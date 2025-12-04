@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCFlow-SE Demo Page</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1400px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
+        h1 { text-align: center; color: #2c3e50; }
+        .abstract { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; background: #fff; margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); table-layout: fixed;}
+        th, td { padding: 8px; text-align: center; border: 1px solid #ddd; word-wrap: break-word; }
+        th { background-color: #f4f6f7; font-weight: 600; font-size: 0.85em; }
+        th.ours, td.ours { background-color: #e8f6f3; border-left: 2px solid #1abc9c; border-right: 2px solid #1abc9c; }
+        th.ours { color: #16a085; }
+        audio { width: 100%; min-width: 80px; height: 30px; }
+        .meta-tag { display: inline-block; background: #eee; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; margin: 2px; }
+    </style>
+</head>
+<body>
+    <h1>MCFlow-SE: One-Step Multichannel Speech Enhancement via Mean Flow Matching</h1>
+    
+    <div class="abstract">
+        <h3>Abstract</h3>
+        <p>
+            Most flow-based speech enhancement methods operate on single-channel inputs, failing to exploit spatial information from microphone arrays. We propose MCFlow-SE, a multichannel framework that integrates mean flow theory with multichannel observations for efficient one-step speech enhancement. By predicting average displacements, our method straightens the generative probability path, enabling high-quality inference in a single forward pass (1-NFE).
+        </p>
+    </div>
+
+    <h2>Comparison Samples</h2>
+    <p>The table below compares different methods. <strong>ArrayDPS</strong> is a diffusion-based baseline. <strong>FlowSE</strong> is the single-channel flow matching baseline. <strong>MCFlow-SE</strong> is our proposed one-step multichannel method.</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 10%">Sample Info</th>
+                <th>Noisy (Mic 1)</th>
+                <th>ArrayDPS</th>
+                <th>FlowSE (N=1)</th>
+                <th>FlowSE (N=5)</th>
+                <th class="ours">MCFlow-SE (N=1)</th>
+                <th>Clean</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td style="text-align: left; font-size: 0.85em;">
+                    <strong>ID: p287_167</strong><br>
+                    <span class="meta-tag">Int: 2</span><br>
+                    <span class="meta-tag">SNR: 31 dB</span><br>
+                    <span class="meta-tag">SIR: 20 dB</span>
+                </td>
+                <td><audio controls preload="none"><source src="audio/sample3_noisy.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample3_arraydps.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample3_flowse_n1.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample3_flowse_n5.wav" type="audio/wav"></audio></td>
+                <td class="ours"><audio controls preload="none"><source src="audio/sample3_mcflow_n1.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample3_clean.wav" type="audio/wav"></audio></td>
+            </tr>
+
+            <tr>
+                <td style="text-align: left; font-size: 0.85em;">
+                    <strong>ID: p286_335</strong><br>
+                    <span class="meta-tag">Int: 2</span><br>
+                    <span class="meta-tag">SNR: 31 dB</span><br>
+                    <span class="meta-tag">SIR: 20 dB</span>
+                </td>
+                <td><audio controls preload="none"><source src="audio/sample4_noisy.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample4_arraydps.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample4_flowse_n1.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample4_flowse_n5.wav" type="audio/wav"></audio></td>
+                <td class="ours"><audio controls preload="none"><source src="audio/sample4_mcflow_n1.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample4_clean.wav" type="audio/wav"></audio></td>
+            </tr>
+
+            <tr>
+                <td style="text-align: left; font-size: 0.85em;">
+                    <strong>ID: p286_274</strong><br>
+                    <span class="meta-tag">Int: 4</span><br>
+                    <span class="meta-tag">SNR: 40 dB</span><br>
+                    <span class="meta-tag">SIR: 7 dB</span>
+                </td>
+                <td><audio controls preload="none"><source src="audio/sample1_noisy.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample1_arraydps.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample1_flowse_n1.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample1_flowse_n5.wav" type="audio/wav"></audio></td>
+                <td class="ours"><audio controls preload="none"><source src="audio/sample1_mcflow_n1.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample1_clean.wav" type="audio/wav"></audio></td>
+            </tr>
+
+            <tr>
+                <td style="text-align: left; font-size: 0.85em;">
+                    <strong>ID: p287_256</strong><br>
+                    <span class="meta-tag">Int: 4</span><br>
+                    <span class="meta-tag">SNR: 40 dB</span><br>
+                    <span class="meta-tag">SIR: 7 dB</span>
+                </td>
+                <td><audio controls preload="none"><source src="audio/sample2_noisy.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample2_arraydps.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample2_flowse_n1.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample2_flowse_n5.wav" type="audio/wav"></audio></td>
+                <td class="ours"><audio controls preload="none"><source src="audio/sample2_mcflow_n1.wav" type="audio/wav"></audio></td>
+                <td><audio controls preload="none"><source src="audio/sample2_clean.wav" type="audio/wav"></audio></td>
+            </tr>
+
+        </tbody>
+    </table>
+    <p style="text-align: center; color: #888;">&copy; 2025 MCFlow-SE Project</p>
+</body>
+</html>
